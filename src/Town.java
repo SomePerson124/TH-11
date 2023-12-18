@@ -46,7 +46,7 @@ public class Town {
         printMessage = "Welcome to town, " + hunter.getHunterName() + ".";
 
         if (toughTown) {
-            printMessage += "\nIt's pretty rough around here, so watch yourself.";
+            printMessage += "\nIt's pretty rough around here (h) , so watch yourself.";
         } else {
             printMessage += "\nWe're just a sleepy little town with mild mannered folk.";
         }
