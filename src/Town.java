@@ -11,6 +11,8 @@ public class Town {
     private Terrain terrain;
     private String printMessage;
     private boolean toughTown;
+    private String treasure;
+    private boolean isSearched;
 
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
@@ -30,6 +32,7 @@ public class Town {
 
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
+        treasure = null;
     }
 
     public String getLatestNews() {
@@ -49,6 +52,17 @@ public class Town {
             printMessage += "\nIt's pretty rough around here, so watch yourself.";
         } else {
             printMessage += "\nWe're just a sleepy little town with mild mannered folk.";
+        }
+
+        int random = (int) (Math.random() * 4) + 1;
+        if (random == 1) {
+            treasure = "a crown";
+        } else if (random == 2) {
+            treasure = "a trophy";
+        } else if (random == 3) {
+            treasure = "a gem";
+        } else {
+            treasure = "dust";
         }
     }
 
@@ -110,6 +124,25 @@ public class Town {
                 printMessage += "\nYou lost the brawl and pay " + goldDiff + " gold.";
                 hunter.changeGold(-goldDiff);
             }
+        }
+    }
+
+    public void searchForTreasure() {
+        if (!isSearched) {
+            if (!hunter.hasTreasure(treasure)) {
+                if (treasure.equals("dust")) {
+                    System.out.println("You found " + treasure + "!");
+                    isSearched = true;
+                } else {
+                    System.out.println("You found " + treasure + "!");
+                    hunter.collectTreasure(treasure);
+                    isSearched = true;
+                }
+            } else {
+                System.out.println("You have already collected this treasure. Don't collect it again.");
+            }
+        } else {
+            System.out.println("You have already searched this town.");
         }
     }
 
