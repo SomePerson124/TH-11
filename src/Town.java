@@ -11,6 +11,8 @@ public class Town {
     private Terrain terrain;
     private String printMessage;
     private boolean toughTown;
+    private String treasure;
+    private boolean isSearched;
     private boolean dugAlready;
 
     /**
@@ -31,6 +33,7 @@ public class Town {
 
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
+        treasure = null;
     }
 
     public String getLatestNews() {
@@ -50,6 +53,17 @@ public class Town {
             printMessage += "\nIt's pretty rough around here, so watch yourself.";
         } else {
             printMessage += "\nWe're just a sleepy little town with mild mannered folk.";
+        }
+
+        int random = (int) (Math.random() * 4) + 1;
+        if (random == 1) {
+            treasure = "a crown";
+        } else if (random == 2) {
+            treasure = "a trophy";
+        } else if (random == 3) {
+            treasure = "a gem";
+        } else {
+            treasure = "dust";
         }
     }
 
@@ -114,7 +128,6 @@ public class Town {
             }
         }
     }
-
     public void digGold() {
         if(hunter.hasItemInKit("shovel") && !dugAlready) {
             double rnd = (int) (Math.random() * 2);
@@ -124,7 +137,7 @@ public class Town {
                 dugAlready = true;
                 hunter.changeGold(goldDiff);
             } else {
-                 printMessage = "You dug but only found dirt";
+                printMessage = "You dug but only found dirt";
                 dugAlready = true;
             }
         } else if (!hunter.hasItemInKit("shovel")) {
@@ -133,6 +146,25 @@ public class Town {
             printMessage = "You already dug for gold in this town";
         }
 
+    }
+
+    public void searchForTreasure() {
+        if (!isSearched) {
+            if (!hunter.hasTreasure(treasure)) {
+                if (treasure.equals("dust")) {
+                    System.out.println("You found " + treasure + "!");
+                    isSearched = true;
+                } else {
+                    System.out.println("You found " + treasure + "!");
+                    hunter.collectTreasure(treasure);
+                    isSearched = true;
+                }
+            } else {
+                System.out.println("You have already collected this treasure. Don't collect it again.");
+            }
+        } else {
+            System.out.println("You have already searched this town.");
+        }
     }
 
     public String toString() {

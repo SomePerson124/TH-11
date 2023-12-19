@@ -114,6 +114,7 @@ public class TreasureHunter {
             System.out.println("(M)ove on to a different town.");
             System.out.println("(L)ook for trouble!");
             System.out.println("(D)ig for gold!");
+            System.out.println("(H)unt for treasure!");
             System.out.println("Give up the hunt and e(X)it.");
             System.out.println();
             System.out.print("What's your next move? ");
@@ -137,6 +138,8 @@ public class TreasureHunter {
             }
         } else if (choice.equals("l")) {
             currentTown.lookForTrouble();
+        } else if (choice.equals("h")) {
+            currentTown.searchForTreasure();
         } else if (choice.equals("d")) {
             currentTown.digGold();
         } else if (choice.equals("x")) {
