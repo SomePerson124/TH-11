@@ -16,6 +16,7 @@ public class TreasureHunter {
     private Town currentTown;
     private Hunter hunter;
     private boolean hardMode;
+    private boolean gameOver = false;
 
     /**
      * Constructs the Treasure Hunter game.
@@ -60,7 +61,7 @@ public class TreasureHunter {
             hunter.buyItem("horse", 2);
             hunter.buyItem("boat", 1);
             hunter.buyItem("boot", 1);
-            hunter.changeGold(100);
+            hunter.changeGold(0);
         }
     }
 
@@ -103,7 +104,7 @@ public class TreasureHunter {
     private void showMenu() {
         String choice = "";
 
-        while (!choice.equals("x")) {
+        while (!choice.equals("x") && !gameOver) {
             System.out.println();
             System.out.println(currentTown.getLatestNews());
             System.out.println("***");
@@ -120,6 +121,8 @@ public class TreasureHunter {
             System.out.print("What's your next move? ");
             choice = SCANNER.nextLine().toLowerCase();
             processChoice(choice);
+
+
         }
     }
 
@@ -147,5 +150,6 @@ public class TreasureHunter {
         } else {
             System.out.println("Yikes! That's an invalid option! Try again.");
         }
+
     }
 }

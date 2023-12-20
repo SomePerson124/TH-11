@@ -34,11 +34,18 @@ public class Hunter {
      *
      * @param modifier Amount to modify gold by.
      */
+
     public void changeGold(int modifier) {
         gold += modifier;
-        if (gold < 0) {
-            gold = 0;
-        }
+    }
+
+    /**
+     * Returns the amount of gold the hunter has
+     *
+     * @return amount of gold the hunter has.
+     */
+    public int getGold() {
+        return gold;
     }
 
     /**
