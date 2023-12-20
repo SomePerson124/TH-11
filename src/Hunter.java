@@ -162,6 +162,19 @@ public class Hunter {
         return false;
     }
 
+    public String getTreasure() {
+        String printableTreasure = "";
+        String space = " ";
+
+        for (String treasure : treasure) {
+            if (treasure != null) {
+                printableTreasure += Colors.PURPLE + treasure + Colors.RESET + space;
+            }
+        }
+
+        return printableTreasure;
+    }
+
     /**
      * @return A string representation of the hunter.
      */
@@ -169,6 +182,11 @@ public class Hunter {
         String str = hunterName + " has " + Colors.YELLOW + gold + Colors.RESET + " gold";
         if (!kitIsEmpty()) {
             str += " and " + getInventory();
+        }
+        if (!noTreasure()) {
+            str += "\nTreasure found: " + getTreasure();
+        } else {
+            str += "\nTreasure found: none";
         }
         return str;
     }
@@ -230,4 +248,14 @@ public class Hunter {
 
         return -1;
     }
+    private boolean noTreasure() {
+        for (String string : treasure) {
+            if (string != null) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 }
