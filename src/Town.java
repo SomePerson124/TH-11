@@ -152,18 +152,18 @@ public class Town {
         if (!isSearched) {
             if (!hunter.hasTreasure(treasure)) {
                 if (treasure.equals("dust")) {
-                    System.out.println("You found " + treasure + "!");
+                    printMessage = ("You found " + treasure + "!");
                     isSearched = true;
                 } else {
-                    System.out.println("You found " + treasure + "!");
+                    printMessage = ("You found " + treasure + "!");
                     hunter.collectTreasure(treasure);
                     isSearched = true;
                 }
             } else {
-                System.out.println("You have already collected this treasure. Don't collect it again.");
+                printMessage = ("You have already collected this treasure. Don't collect it again.");
             }
         } else {
-            System.out.println("You have already searched this town.");
+            printMessage = ("You have already searched this town.");
         }
     }
 
