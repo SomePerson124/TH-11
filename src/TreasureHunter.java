@@ -34,6 +34,7 @@ public class TreasureHunter {
         welcomePlayer();
         enterTown();
         showMenu();
+        endScenario();
     }
 
     /**
@@ -103,7 +104,7 @@ public class TreasureHunter {
     private void showMenu() {
         String choice = "";
 
-        while (!choice.equals("x")) {
+        while (!choice.equals("x") && !hunter.hasAllTreasure()) {
             System.out.println();
             System.out.println(currentTown.getLatestNews());
             System.out.println("***");
@@ -146,6 +147,16 @@ public class TreasureHunter {
             System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
         } else {
             System.out.println("Yikes! That's an invalid option! Try again.");
+        }
+    }
+
+    private void endScenario() {
+        if (hunter.hasAllTreasure()) {
+            System.out.println();
+            System.out.println("You found " + hunter.getLastTreasure() + "!");
+            System.out.println("***");
+            System.out.println("Congratulations, you have found the last of the three treasures, you win!");
+            System.out.println("***");
         }
     }
 }
