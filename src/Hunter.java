@@ -150,6 +150,10 @@ public class Hunter {
         return printableKit;
     }
 
+    public String getLastTreasure() {
+        return treasure[2];
+    }
+
     public boolean collectTreasure(String item) {
         if (!hasTreasure(item)) {
             int idx = emptyPositionInTreasure();
@@ -180,6 +184,13 @@ public class Hunter {
         }
 
         return printableTreasure;
+    }
+
+    public boolean hasAllTreasure() {
+        if (emptyPositionInTreasure() == -1) {
+            return true;
+        }
+        return false;
     }
 
     /**

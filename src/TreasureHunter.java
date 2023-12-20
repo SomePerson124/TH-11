@@ -35,6 +35,7 @@ public class TreasureHunter {
         welcomePlayer();
         enterTown();
         showMenu();
+        endScenario();
     }
 
     /**
@@ -61,7 +62,7 @@ public class TreasureHunter {
             hunter.buyItem("horse", 2);
             hunter.buyItem("boat", 1);
             hunter.buyItem("boot", 1);
-            hunter.changeGold(0);
+            hunter.changeGold(100);
         }
     }
 
@@ -104,7 +105,7 @@ public class TreasureHunter {
     private void showMenu() {
         String choice = "";
 
-        while (!choice.equals("x") && !gameOver) {
+        while (!choice.equals("x") && !gameOver && !hunter.hasAllTreasure()) {
             System.out.println();
             System.out.println(currentTown.getLatestNews());
             System.out.println("***");
@@ -121,8 +122,6 @@ public class TreasureHunter {
             System.out.print("What's your next move? ");
             choice = SCANNER.nextLine().toLowerCase();
             processChoice(choice);
-
-
         }
     }
 
@@ -150,6 +149,14 @@ public class TreasureHunter {
         } else {
             System.out.println("Yikes! That's an invalid option! Try again.");
         }
-
     }
+
+    private void endScenario() {
+        if (hunter.hasAllTreasure()) {
+            System.out.println();
+            System.out.println("You found " + hunter.getLastTreasure() + "!");
+            System.out.println("***");
+            System.out.println("Congratulations, you have found the last of the three treasures, you win!");
+            System.out.println("***");
+        }
 }
