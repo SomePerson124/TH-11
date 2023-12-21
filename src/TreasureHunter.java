@@ -167,6 +167,16 @@ public class TreasureHunter {
 
     }
 
+    public String getDifficulty() {
+        if (easyMode) {
+            return "easy";
+        } else if (hardMode) {
+            return "hard";
+        } else {
+            return "normal";
+        }
+    }
+
     private void endScenario() {
         if (hunter.hasAllTreasure()) {
             System.out.println();
