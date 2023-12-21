@@ -16,7 +16,7 @@ public class TreasureHunter {
     private Town currentTown;
     private Hunter hunter;
     private boolean hardMode;
-    private boolean gameOver = false;
+
 
     /**
      * Constructs the Treasure Hunter game.
@@ -36,6 +36,7 @@ public class TreasureHunter {
         enterTown();
         showMenu();
         endScenario();
+        loseScenario();
     }
 
     /**
@@ -62,7 +63,7 @@ public class TreasureHunter {
             hunter.buyItem("horse", 2);
             hunter.buyItem("boat", 1);
             hunter.buyItem("boot", 1);
-            hunter.changeGold(100);
+            hunter.changeGold(0);
         }
     }
 
@@ -104,8 +105,7 @@ public class TreasureHunter {
      */
     private void showMenu() {
         String choice = "";
-
-        while (!choice.equals("x") && !gameOver && !hunter.hasAllTreasure()) {
+        while (!choice.equals("x") && hunter.getGold() >= 0 && !hunter.hasAllTreasure()) {
             System.out.println();
             System.out.println(currentTown.getLatestNews());
             System.out.println("***");
@@ -149,6 +149,7 @@ public class TreasureHunter {
         } else {
             System.out.println("Yikes! That's an invalid option! Try again.");
         }
+
     }
 
     private void endScenario() {
@@ -159,4 +160,15 @@ public class TreasureHunter {
             System.out.println("Congratulations, you have found the last of the three treasures, you win!");
             System.out.println("***");
         }
+    }
+
+    private void loseScenario() {
+        if (hunter.getGold() < 0) {
+            System.out.println();
+            System.out.println(currentTown.getLatestNews());
+            System.out.println("***");
+            System.out.println(Colors.RED + "You couldnt pay up! Game Over" + Colors.RESET);
+            System.out.println("***");
+        }
+    }
 }
