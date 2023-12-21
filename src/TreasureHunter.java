@@ -16,6 +16,7 @@ public class TreasureHunter {
     private Town currentTown;
     private Hunter hunter;
     private boolean hardMode;
+    private boolean easyMode;
 
 
     /**
@@ -26,6 +27,7 @@ public class TreasureHunter {
         currentTown = null;
         hunter = null;
         hardMode = false;
+        easyMode = false;
     }
 
     /**
@@ -50,10 +52,12 @@ public class TreasureHunter {
 
         // set hunter instance variable
         hunter = new Hunter(name, 10);
-
-        System.out.print("Hard mode? (y/n): ");
+        System.out.println("Choose a Difficulty:");
+        System.out.println("(E)asy Mode");
+        System.out.println("(N)ormal Mode");
+        System.out.println("(H)ard Mode");
         String hard = SCANNER.nextLine().toLowerCase();
-        if (hard.equals("y")) {
+        if (hard.equals("h")) {
             hardMode = true;
         }
         if (hard.equals("test")) {
@@ -64,6 +68,10 @@ public class TreasureHunter {
             hunter.buyItem("boat", 1);
             hunter.buyItem("boot", 1);
             hunter.changeGold(0);
+        }
+        if (hard.equals("e")) {
+            easyMode = true;
+            hunter.changeGold(10);
         }
     }
 
@@ -79,7 +87,14 @@ public class TreasureHunter {
 
             // and the town is "tougher"
             toughness = 0.75;
+        } else if (easyMode) {
+            //in easy mode, you get full money back after selling items
+            markdown = 1;
+
+            //and the town is less "tough"
+            toughness = 0.25;
         }
+
 
         // note that we don't need to access the Shop object
         // outside of this method, so it isn't necessary to store it as an instance
