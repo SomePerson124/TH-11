@@ -15,6 +15,7 @@ public class TreasureHunter {
     // instance variables
     private Town currentTown;
     private Hunter hunter;
+    private boolean samuraiMode;
     private boolean hardMode;
     private boolean easyMode;
 
@@ -26,6 +27,7 @@ public class TreasureHunter {
         // these will be initialized in the play method
         currentTown = null;
         hunter = null;
+        samuraiMode = false;
         hardMode = false;
         easyMode = false;
     }
@@ -50,8 +52,6 @@ public class TreasureHunter {
         System.out.print("What's your name, Hunter? ");
         String name = SCANNER.nextLine().toLowerCase();
 
-        // set hunter instance variable
-        hunter = new Hunter(name, 10);
         System.out.println("Choose a Difficulty:");
         System.out.println("(E)asy Mode");
         System.out.println("(N)ormal Mode");
@@ -60,14 +60,20 @@ public class TreasureHunter {
         if (hard.equals("h")) {
             hardMode = true;
         }
+        if (hard.equals("s")) {
+            samuraiMode = true;
+        }
+        // set hunter instance variable
+        hunter = new Hunter(name, 10, samuraiMode);
         if (hard.equals("test")) {
             hunter.buyItem("water", 2);
             hunter.buyItem("rope", 2);
             hunter.buyItem("machete", 2);
-            hunter.buyItem("horse", 2);
+            hunter.buyItem("horse", 1);
             hunter.buyItem("boat", 1);
             hunter.buyItem("boot", 1);
-            hunter.changeGold(0);
+            hunter.buyItem("shovel", 1);
+            hunter.changeGold(100);
         }
         if (hard.equals("e")) {
             easyMode = true;
