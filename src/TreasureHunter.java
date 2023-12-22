@@ -153,6 +153,7 @@ public class TreasureHunter {
     private void processChoice(String choice) {
         if (choice.equals("b") || choice.equals("s")) {
             currentTown.enterShop(choice);
+            currentTown.leaveShop();
         } else if (choice.equals("m")) {
             if (currentTown.leaveTown()) {
                 // This town is going away so print its news ahead of time.
@@ -171,16 +172,6 @@ public class TreasureHunter {
             System.out.println("Yikes! That's an invalid option! Try again.");
         }
 
-    }
-
-    public String getDifficulty() {
-        if (easyMode) {
-            return "easy";
-        } else if (hardMode) {
-            return "hard";
-        } else {
-            return "normal";
-        }
     }
 
     private void endScenario() {

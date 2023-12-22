@@ -99,6 +99,10 @@ public class Town {
         shop.enter(hunter, choice);
     }
 
+    public void leaveShop() {
+        printMessage = "You left the shop";
+    }
+
     /**
      * Gives the hunter a chance to fight for some gold.<p>
      * The chances of finding a fight and winning the gold are based on the toughness of the town.<p>
