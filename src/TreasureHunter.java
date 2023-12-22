@@ -40,7 +40,6 @@ public class TreasureHunter {
         enterTown();
         showMenu();
         endScenario();
-        loseScenario();
     }
 
     /**
@@ -182,9 +181,6 @@ public class TreasureHunter {
             System.out.println("Congratulations, you have found the last of the three treasures, you win!");
             System.out.println("***");
         }
-    }
-
-    private void loseScenario() {
         if (hunter.getGold() < 0) {
             System.out.println();
             System.out.println(currentTown.getLatestNews());
@@ -193,4 +189,5 @@ public class TreasureHunter {
             System.out.println("***");
         }
     }
+
 }
