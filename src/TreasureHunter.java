@@ -55,16 +55,16 @@ public class TreasureHunter {
         System.out.println("(E)asy Mode");
         System.out.println("(N)ormal Mode");
         System.out.println("(H)ard Mode");
-        String hard = SCANNER.nextLine().toLowerCase();
-        if (hard.equals("h")) {
+        String mode = SCANNER.nextLine().toLowerCase();
+        if (mode.equals("h")) {
             hardMode = true;
         }
-        if (hard.equals("s")) {
+        if (mode.equals("s")) {
             samuraiMode = true;
         }
         // set hunter instance variable
         hunter = new Hunter(name, 10, samuraiMode);
-        if (hard.equals("test")) {
+        if (mode.equals("test")) {
             hunter.buyItem("water", 2);
             hunter.buyItem("rope", 2);
             hunter.buyItem("machete", 2);
@@ -74,7 +74,7 @@ public class TreasureHunter {
             hunter.buyItem("shovel", 1);
             hunter.changeGold(100);
         }
-        if (hard.equals("e")) {
+        if (mode.equals("e")) {
             easyMode = true;
             hunter.changeGold(10);
         }
